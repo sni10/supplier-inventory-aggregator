@@ -60,7 +60,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          docker compose exec -T php composer install --no-interaction --prefer-dist --optimize-autoloader
+          docker compose exec -T php-sda composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Run PHPUnit with coverage
         run: |          
