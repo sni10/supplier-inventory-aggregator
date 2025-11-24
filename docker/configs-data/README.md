@@ -1,6 +1,6 @@
 # Mock Configuration Files
 
-Эта папка содержит **моковые версии конфигурационных файлов** для сборки Docker-образа UP EDI Scraper.
+Эта папка содержит **моковые версии конфигурационных файлов** для сборки Docker-образа Supplier Inventory Aggregator.
 
 ---
 

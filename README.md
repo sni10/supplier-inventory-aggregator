@@ -1,4 +1,4 @@
-# UP EDI Scraper — агрегатор EDI‑данных поставщиков
+# Supplier Inventory Aggregator — агрегатор инвентаря/остатков поставщиков
 
 [![Release](https://img.shields.io/github/v/release/sni10/ETL-EDI-data-scrapper?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sni10/ETL-EDI-data-scrapper/releases)
 [![Release Workflow](https://img.shields.io/github/actions/workflow/status/sni10/ETL-EDI-data-scrapper/release.yml?style=for-the-badge&logo=githubactions&logoColor=white&label=Release)](https://github.com/sni10/ETL-EDI-data-scrapper/actions/workflows/release.yml)
@@ -8,7 +8,6 @@
 [![Symfony](https://img.shields.io/badge/Symfony-7.x-2496ED?style=for-the-badge&logo=Symfony&logoColor=white)](https://symfony.com/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-
 
 Консольное приложение на Symfony 7 / PHP 8.2+, которое агрегирует и нормализует EDI‑данные (прайсы, остатки и т.п.) от разных поставщиков из различных источников (Google Sheets, HTTP/SFTP‑файлы, REST API) и публикует результат в Kafka.
 
@@ -39,30 +38,36 @@
 - Docker и Docker Compose
 - Расширения PHP: rdkafka, amqp, ssh2, xdebug, mbstring, gd, pdo_pgsql, zip, sockets, simplexml
 
-## Быстрый старт (Docker + Makefile)
+## Makefile
 
 ```powershell
-git clone <repository-url>
-cd etl-edi-scraper
-
-# выбрать окружение (test или prod)
-$env:ENVIRONMENT="test"
-
-# сборка и запуск контейнеров
-make dc_up
-
-# логи
-make dc_logs
-
-# остановка и очистка
-make dc_down
-
-# рестарт
-make dc_restart
-
-# вход в контейнер
-make dc_exec
+$env:ENVIRONMENT="test"  # выбор окружения
 ```
+
+| Команда | Описание |
+|---------|----------|
+| **Docker** | |
+| `make dc_up` | Сборка и запуск контейнеров |
+| `make dc_down` | Остановка и очистка |
+| `make dc_restart` | Перезапуск |
+| `make dc_logs` | Логи docker-compose |
+| `make dc_exec` | Вход в контейнер |
+| **Логи** | |
+| `make logs_app` | Логи приложения (stdout) |
+| `make logs_app_err` | Логи приложения (stderr) |
+| `make logs_supervisor` | Логи supervisord |
+| `make logs_php` | PHP ошибки |
+| **Symfony** | |
+| `make console cmd="..."` | Произвольная команда |
+| `make consume` | Запуск консьюмера |
+| `make cache_clear` | Очистка кэша |
+| **Composer** | |
+| `make composer_install` | Установка зависимостей |
+| `make composer_update` | Обновление зависимостей |
+| **Тесты** | |
+| `make test` | Запуск тестов |
+| `make test_coverage` | Тесты с покрытием |
+| `make test_filter filter="..."` | Фильтр тестов |
 
 ## Ручной запуск через Docker Compose
 
@@ -164,25 +169,6 @@ php /var/www/etl-edi-scraper/bin/console app:consume
 
 ## Отладка
 
-Для отладки удобнее и безопаснее всего использовать удалённый интерпретатор из контейнера.
+Для отладки в IDE использовать удалённый интерпретатор из Docker-контейнера. Конфигурация Xdebug: `docker/config-envs/{ENVIRONMENT}/php.ini`.
 
-- В IDE выбрать конфигурацию типа **PHP Script**
-- В качестве интерпретатора указать удалённый интерпретатор из Docker‑контейнера
-- IDE поднимет отдельный контейнер с монтированным кодом проекта для изолированного запуска скрипта
-- При необходимости можно добавить дополнительные аргументы, переменные окружения и т.п.
-
-Полезные команды:
-
-```powershell
-# логи консольной команды
-docker exec -it up_edi_scraper-php-up-edi-1 tail -f /var/log/supervisor/symfony_command.out.log
-docker exec -it up_edi_scraper-php-up-edi-1 tail -f /var/log/supervisor/symfony_command.err.log
-
-# логи supervisord
-docker exec -it up_edi_scraper-php-up-edi-1 tail -f /var/log/supervisord.log
-
-# PHP-ошибки
-docker exec -it up_edi_scraper-php-up-edi-1 tail -f /var/log/php_errors.log
-```
-
-Конфигурация Xdebug находится в `docker/config-envs/{ENVIRONMENT}/php.ini`.
+Логи доступны через Makefile: `make logs_app`, `make logs_php`, `make logs_supervisor`.

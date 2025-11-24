@@ -1,5 +1,5 @@
 services:
-    php-up-edi:
+    php-sda:
         build:
             context: .
             dockerfile: Dockerfile

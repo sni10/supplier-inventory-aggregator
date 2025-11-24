@@ -1,6 +1,6 @@
 services:
-    php-up-edi:
-        image: up-edi-scraper-php:latest
+    php-sda:
+        image: supplier-data-aggregator-php:latest
         build:
             context: .
             dockerfile: Dockerfile
@@ -8,7 +8,7 @@ services:
                 APP_ENV: ${APP_ENV}
         environment:
             APP_ENV: ${APP_ENV}
-        container_name: php-up-edi
+        container_name: php-sda
 
 #        For prod
 #        command: composer run-script serve
