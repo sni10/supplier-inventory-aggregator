@@ -58,10 +58,17 @@ jobs:
             -f docker/config-envs/${APP_ENV}/docker-compose.override.yml \
             up -d
 
-      - name: Run PHPUnit with coverage
+      - name: Install dependencies
         run: |
+          docker compose exec -T php composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Run PHPUnit with coverage
+        run: |          
           docker compose exec -e XDEBUG_MODE=coverage php-sda vendor/bin/phpunit \
-          --coverage-text
+            --log-junit storage/coverage-report/phpunit-report.xml \
+            --coverage-text \
+            --coverage-html=storage/coverage-report \
+            --coverage-clover=storage/coverage-report/phpunit-coverage.xml
 
       - name: Copy coverage reports from container
         if: always()
