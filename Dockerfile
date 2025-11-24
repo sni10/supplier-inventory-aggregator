@@ -45,17 +45,17 @@ RUN if [ "$APP_ENV" = "test" ]; then \
         pecl install xdebug && docker-php-ext-enable xdebug; \
     fi
 
-WORKDIR /var/www/etl-edi-scraper
+WORKDIR /var/www/supplier-inventory-aggregator
 
 # Copy all source code first
 COPY . .
 
 # Copy mock config files
-COPY ./docker/configs-data/credentials.json /var/www/etl-edi-scraper/config/credentials.json
-COPY ./docker/configs-data/token.json /var/www/etl-edi-scraper/config/token.json
-COPY ./docker/configs-data/sftp_config.json /var/www/etl-edi-scraper/config/sftp_config.json
-COPY ./docker/configs-data/rest.json /var/www/etl-edi-scraper/config/rest.json
-COPY ./docker/configs-data/rest.tokens.json /var/www/etl-edi-scraper/config/rest.tokens.json
+COPY ./docker/configs-data/credentials.json /var/www/supplier-inventory-aggregator/config/credentials.json
+COPY ./docker/configs-data/token.json /var/www/supplier-inventory-aggregator/config/token.json
+COPY ./docker/configs-data/sftp_config.json /var/www/supplier-inventory-aggregator/config/sftp_config.json
+COPY ./docker/configs-data/rest.json /var/www/supplier-inventory-aggregator/config/rest.json
+COPY ./docker/configs-data/rest.tokens.json /var/www/supplier-inventory-aggregator/config/rest.tokens.json
 
 # Copy php.ini
 COPY ./docker/configs-data/php.ini /usr/local/etc/php/conf.d/custom-php.ini
