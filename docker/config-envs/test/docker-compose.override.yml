@@ -7,7 +7,6 @@ services:
         APP_ENV: ${APP_ENV}
     environment:
       APP_ENV: ${APP_ENV}
-      XDEBUG_MODE: ${XDEBUG_MODE}
 #    volumes:
 #      - .:/var/www/etl-edi-scraper # for the ability to locally plug-and-play modify project files for development
     command: tail -f /dev/null
