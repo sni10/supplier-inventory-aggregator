@@ -1,9 +1,9 @@
 # Supplier Inventory Aggregator — агрегатор инвентаря/остатков поставщиков
 
-[![Release](https://img.shields.io/github/v/release/sni10/ETL-EDI-data-scrapper?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sni10/ETL-EDI-data-scrapper/releases)
-[![Release Workflow](https://img.shields.io/github/actions/workflow/status/sni10/ETL-EDI-data-scrapper/release.yml?style=for-the-badge&logo=githubactions&logoColor=white&label=Release)](https://github.com/sni10/ETL-EDI-data-scrapper/actions/workflows/release.yml)
-[![Tests](https://img.shields.io/github/actions/workflow/status/sni10/ETL-EDI-data-scrapper/tests.yml?style=for-the-badge&logo=githubactions&logoColor=white&label=Tests)](https://github.com/sni10/ETL-EDI-data-scrapper/actions/workflows/tests.yml)
-[![Coverage](https://img.shields.io/badge/Coverage-65%25-brightgreen?style=for-the-badge&logo=codecov&logoColor=white)](https://github.com/sni10/ETL-EDI-data-scrapper/actions/workflows/tests.yml)
+[![Release](https://img.shields.io/github/v/release/sni10/supplier-inventory-aggregator?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sni10/supplier-inventory-aggregator/releases)
+[![Release Workflow](https://img.shields.io/github/actions/workflow/status/sni10/supplier-inventory-aggregator/release.yml?style=for-the-badge&logo=githubactions&logoColor=white&label=Release)](https://github.com/sni10/supplier-inventory-aggregator/actions/workflows/release.yml)
+[![Tests](https://img.shields.io/github/actions/workflow/status/sni10/supplier-inventory-aggregator/tests.yml?style=for-the-badge&logo=githubactions&logoColor=white&label=Tests)](https://github.com/sni10/supplier-inventory-aggregator/actions/workflows/tests.yml)
+[![Coverage](https://img.shields.io/badge/Coverage-65%25-brightgreen?style=for-the-badge&logo=codecov&logoColor=white)](https://github.com/sni10/supplier-inventory-aggregator/actions/workflows/tests.yml)
 [![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 [![Symfony](https://img.shields.io/badge/Symfony-7.x-2496ED?style=for-the-badge&logo=Symfony&logoColor=white)](https://symfony.com/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
