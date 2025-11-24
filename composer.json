@@ -1,4 +1,6 @@
 {
+    "name": "sni10/supplier-inventory-aggregator",
+    "description": "Supplier Inventory Aggregator — агрегатор инвентаря/остатков поставщиков (UPC/EAN/GTIN)",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",

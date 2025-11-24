@@ -1,6 +1,6 @@
 services:
-    php-up-edi:
-        image: up-edi-scraper-php:latest
+    php-sda:
+        image: supplier-data-aggregator-php:latest
         build:
             context: .
             dockerfile: Dockerfile
@@ -8,13 +8,13 @@ services:
                 APP_ENV: ${APP_ENV}
         environment:
             APP_ENV: ${APP_ENV}
-        container_name: php-up-edi
-
+        networks:
+          - internal_sync_network
 #        For prod
 #        command: composer run-script serve
 
-# For prod
-#networks:
-#    walmart_scraper_network:
-#        external: true
-#        name: walmart_scraper_network
+networks:
+  internal_sync_network:
+    driver: bridge
+    external: true
+    name: internal_sync_network
