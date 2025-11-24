@@ -64,11 +64,11 @@ jobs:
 
       - name: Run PHPUnit with coverage
         run: |          
-          docker compose exec -e XDEBUG_MODE=coverage php-sda vendor/bin/phpunit \
-            --log-junit storage/coverage-report/phpunit-report.xml \
+          docker compose exec -e XDEBUG_MODE=${XDEBUG_MODE}/ php-sda vendor/bin/phpunit \
+            --log-junit var/coverage-report/phpunit-report.xml \
             --coverage-text \
-            --coverage-html=storage/coverage-report \
-            --coverage-clover=storage/coverage-report/phpunit-coverage.xml
+            --coverage-html=var/coverage-report \
+            --coverage-clover=var/coverage-report/phpunit-coverage.xml
 
       - name: Copy coverage reports from container
         if: always()
