@@ -8,5 +8,5 @@ services:
     environment:
       APP_ENV: ${APP_ENV}
 #    volumes:
-#      - .:/var/www/etl-edi-scraper # for the ability to locally plug-and-play modify project files for development
+#      - .:/var/www/supplier-inventory-aggregator # for the ability to locally plug-and-play modify project files for development
     command: tail -f /dev/null

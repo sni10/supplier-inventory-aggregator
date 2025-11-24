@@ -77,7 +77,7 @@ docker compose up -d
 
 4. При старте контейнера `supervisord` автоматически запускает консольную команду:
 ```bash
-php /var/www/etl-edi-scraper/bin/console app:consume
+php /var/www/supplier-inventory-aggregator/bin/console app:consume
 ```
 
 ### Development / Testing
