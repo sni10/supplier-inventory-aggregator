@@ -78,21 +78,18 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ steps.calculate_version.outputs.new_version }}
-          # Имя релиза в классическом формате
-          name: Release ${{ steps.calculate_version.outputs.new_version }}
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        run: |
+          gh release create "${{ steps.calculate_version.outputs.new_version }}" \
+            --title "Release ${{ steps.calculate_version.outputs.new_version }}" \
+            --notes-file - <<'EOF'
+          ## Changes in this Release
 
-          body: |
-            ## Changes in this Release
+          Triggered by push to `${{ github.ref_name }}` (commit `${{ github.sha }}`)
 
-            Triggered by push to `${{ github.ref_name }}` (commit `${{ github.sha }}`)
+          ---
 
-            ---
-
-            ### Commits since ${{ steps.get_latest_tag.outputs.latest_tag }}
-            ${{ steps.changelog.outputs.changelog }}
-
-          draft: false
-          prerelease: false
+          ### Commits since ${{ steps.get_latest_tag.outputs.latest_tag }}
+          ${{ steps.changelog.outputs.changelog }}
+          EOF

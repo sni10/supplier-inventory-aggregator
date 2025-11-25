@@ -62,8 +62,17 @@ jobs:
         run: |
           docker compose exec -T php-sda composer install --no-interaction --prefer-dist --optimize-autoloader
 
+      - name: Verify Xdebug installation
+        run: |
+          docker compose exec -T php-sda php -v
+          docker compose exec -T php-sda php -m | grep xdebug || echo "Xdebug not found"
+
+      - name: Create coverage directory
+        run: |
+          docker compose exec -T php-sda mkdir -p var/coverage-report
+
       - name: Run PHPUnit with coverage
-        run: |          
+        run: |
           docker compose exec -e XDEBUG_MODE=${XDEBUG_MODE} php-sda vendor/bin/phpunit \
             --log-junit var/coverage-report/phpunit-report.xml \
             --coverage-text \
@@ -73,11 +82,12 @@ jobs:
       - name: Copy coverage reports from container
         if: always()
         run: |
-          docker compose cp php-sda:/var/www/supplier-inventory-aggregator/var/coverage-report ./var/
+          mkdir -p ./var
+          docker compose cp php-sda:/var/www/supplier-inventory-aggregator/var/coverage-report ./var/ || echo "No coverage reports found in container"
 
       - name: Upload coverage reports
         uses: actions/upload-artifact@v4
-        if: always()
+        if: always() && hashFiles('var/coverage-report/**/*') != ''
         with:
           name: coverage-report
           path: var/coverage-report
